@@ -13,9 +13,9 @@ class CalcInputTest {
     @DisplayName("빈 문자열 입력 시 IllegalArgumentException 반환")
     void calcInput_fail() {
         //given&&when
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {new CalcInput("");});
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {new CalcInput(null);});
         //then
-        assertEquals("input cannot be null or empty", exception.getMessage());
+        assertEquals("input cannot be null", exception.getMessage());
     }
 
     @Test

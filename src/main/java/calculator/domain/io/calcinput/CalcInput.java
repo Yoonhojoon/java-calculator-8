@@ -11,8 +11,8 @@ public class CalcInput {
     }
 
     private void validateInput(String input) {
-        if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException("input cannot be null or empty");
+        if (input == null ) {
+            throw new IllegalArgumentException("input cannot be null");
         }
     }
 
