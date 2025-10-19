@@ -1,0 +1,19 @@
+package calculator.domain.io.calcoutput;
+
+import java.math.BigDecimal;
+
+public final class CalcOutput {
+
+    private CalcOutput() {}
+
+    public static String formatResult(BigDecimal result) {
+        if (result == null) {
+            throw new IllegalArgumentException("result must not be null");
+        }
+        return "결과 : " + result.toPlainString();
+    }
+
+    public static void printResult(BigDecimal result) {
+        System.out.println(formatResult(result));
+    }
+}
