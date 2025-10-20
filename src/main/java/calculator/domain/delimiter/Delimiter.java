@@ -1,9 +1,10 @@
 package calculator.domain.delimiter;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public final class Delimiter {
-    private static final Pattern DEFAULT = Pattern.compile("[,:]"); // 쉼표|콜론
+    private static final Pattern DEFAULT = Pattern.compile("[,:]");
     private final Pattern pattern;
 
     private Delimiter(Pattern pattern) {
@@ -15,12 +16,20 @@ public final class Delimiter {
     }
 
     public static Delimiter ofCustom(String raw) {
-        // 메타문자·개행 안전화: "raw 전체"를 리터럴로 취급
-        return new Delimiter(Pattern.compile(Pattern.quote(raw), Pattern.DOTALL));
+        // 모든 문자를 개별 구분자로 처리
+        StringBuilder patternBuilder = new StringBuilder();
+        for (int i = 0; i < raw.length(); i++) {
+            if (i > 0) patternBuilder.append("|");
+            patternBuilder.append(Pattern.quote(String.valueOf(raw.charAt(i))));
+        }
+        return new Delimiter(Pattern.compile(patternBuilder.toString(), Pattern.DOTALL));
     }
 
     public String[] split(String body) {
-        // -1: 빈 토큰 보존 → 잘못된 입력 검출 가능
-        return pattern.split(body, -1);
+        // 빈 토큰 제거
+        String[] tokens = pattern.split(body, -1);
+        return Arrays.stream(tokens)
+                .filter(token -> !token.isEmpty())
+                .toArray(String[]::new);
     }
 }

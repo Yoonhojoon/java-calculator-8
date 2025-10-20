@@ -1,19 +1,16 @@
 package calculator.domain.delimiter;
 
-import calculator.domain.io.calcinput.CalcInput;
-import calculator.domain.io.inputparser.InputParser;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.regex.Pattern;
-
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import calculator.domain.io.calcinput.CalcInput;
+import calculator.domain.io.inputparser.InputParser;
 
 class DelimiterTest {
 
     @Test
-    @DisplayName("커스텀 구분자가 있을 때 - 마지막 개행 규칙으로 파싱")
+    @DisplayName("커스텀 구분자가 있을 때 - 각 문자를 개별 구분자로 처리")
     void extractDelimeters_withCustom() {
         // given
         CalcInput input = new CalcInput("//;./\n1;./2;./3");
@@ -40,5 +37,33 @@ class DelimiterTest {
 
         String[] tokens2 = parsed.delimiter().split("10,20:30");
         assertArrayEquals(new String[]{"10", "20", "30"}, tokens2);
+    }
+
+    @Test
+    @DisplayName("여러 커스텀 구분자 사용 - 각 문자를 개별 구분자로")
+    void extractDelimeters_withMultipleCustom() {
+        // given
+        CalcInput input = new CalcInput("//\\;\\\\\n1;2\\3");
+
+        // when
+        InputParser.Parsed parsed = InputParser.parse(input);
+
+        // then
+        String[] tokens = parsed.delimiter().split(parsed.body());
+        assertArrayEquals(new String[]{"1", "2", "3"}, tokens);
+    }
+
+    @Test
+    @DisplayName("사용자 요청 케이스 - //;\\n1;2\\3")
+    void extractDelimeters_userRequestCase() {
+        // given
+        CalcInput input = new CalcInput("//\\;\\\n1;2\\3");
+
+        // when
+        InputParser.Parsed parsed = InputParser.parse(input);
+
+        // then
+        String[] tokens = parsed.delimiter().split(parsed.body());
+        assertArrayEquals(new String[]{"1", "2", "3"}, tokens);
     }
 }
