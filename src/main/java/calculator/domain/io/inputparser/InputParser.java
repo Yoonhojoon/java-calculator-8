@@ -13,9 +13,9 @@ public final class InputParser {
 
     public record Parsed(Delimiter delimiter, String body) {}
 
-    private InputParser() {}
+    public InputParser() {}
 
-    public static Parsed parse(CalcInput input) {
+    public Parsed parse(CalcInput input) {
         String s = input.getInput();
         Matcher m = LAST_NL.matcher(s);
         if (m.matches()) {

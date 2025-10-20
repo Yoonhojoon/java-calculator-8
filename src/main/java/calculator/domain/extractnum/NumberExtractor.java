@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import calculator.domain.io.inputparser.InputParser;
 
 public final class NumberExtractor {
-    private NumberExtractor() {}
+    public NumberExtractor() {}
 
-    public static Numbers extract(InputParser.Parsed parsed) {
+    public Numbers extract(InputParser.Parsed parsed) {
         String body = parsed.body();
         if (body.isBlank()) {
             return new Numbers(List.of());
