@@ -27,4 +27,44 @@
 
 ## 예외 분류
 
-### 1. 숫자
+현재 프로젝트에서 구현된 예외들은 모두 `IllegalArgumentException`을 사용하며, 다음과 같이 분류됩니다:
+
+### 1. 입력 검증 예외 (Input Validation)
+
+#### CalcInput 클래스
+- **null 입력 검증**: `"input cannot be null"`
+  - 사용자가 null 값을 입력했을 때 발생
+
+### 2. 숫자 파싱 예외 (Number Parsing)
+
+#### NumberExtractor 클래스  
+- **숫자 형식 오류**: `"non-numeric value: {token}"`
+  - 문자열을 BigDecimal로 변환할 수 없을 때 발생
+  - 예: "abc", "1.2.3" 등
+
+### 3. 도메인 규칙 예외 (Domain Rules)
+
+#### Numbers 클래스
+- **null 리스트 검증**: `"values must not be null"`
+  - Numbers 생성자에 null 리스트가 전달될 때 발생
+- **null 숫자 검증**: `"number must not be null"`  
+  - 리스트 내부에 null 값이 있을 때 발생
+- **양수 검증**: `"non-positive number: {value}"`
+  - 0 이하의 숫자가 포함될 때 발생
+  - 예: -1, 0 등
+
+### 4. 연산 예외 (Operation)
+
+#### AddOperation 클래스
+- **null 리스트 검증**: `"numbers must not be null"`
+  - calculate 메서드에 null 리스트가 전달될 때 발생
+- **null 숫자 검증**: `"number must not be null"`
+  - 리스트 내부에 null 값이 있을 때 발생
+
+### 5. 출력 예외 (Output)
+
+#### CalcOutput 클래스
+- **null 결과 검증**: `"result must not be null"`
+  - formatResult 메서드에 null 값이 전달될 때 발생
+
+
