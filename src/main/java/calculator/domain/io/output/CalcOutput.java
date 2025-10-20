@@ -1,4 +1,4 @@
-package calculator.domain.io.calcoutput;
+package calculator.domain.io.output;
 
 import java.math.BigDecimal;
 

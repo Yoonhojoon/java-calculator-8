@@ -2,11 +2,11 @@ package calculator.application;
 
 import java.math.BigDecimal;
 
-import calculator.domain.extractnum.NumberExtractor;
-import calculator.domain.extractnum.Numbers;
-import calculator.domain.io.calcinput.CalcInput;
-import calculator.domain.io.calcoutput.CalcOutput;
-import calculator.domain.io.inputparser.InputParser;
+import calculator.domain.numbers.NumberExtractor;
+import calculator.domain.numbers.Numbers;
+import calculator.domain.io.input.CalcInput;
+import calculator.domain.io.output.CalcOutput;
+import calculator.domain.io.parser.InputParser;
 import calculator.domain.operation.AddOperation;
 import calculator.domain.operation.Operation;
 

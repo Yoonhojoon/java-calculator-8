@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import calculator.domain.io.calcinput.CalcInput;
-import calculator.domain.io.inputparser.InputParser;
+import calculator.domain.io.input.CalcInput;
+import calculator.domain.io.parser.InputParser;
 
 class DelimiterTest {
     private final InputParser inputParser = new InputParser();

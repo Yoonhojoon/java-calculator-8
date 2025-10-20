@@ -1,10 +1,10 @@
-package calculator.domain.io.inputparser;
+package calculator.domain.io.parser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import calculator.domain.delimiter.Delimiter;
-import calculator.domain.io.calcinput.CalcInput;
+import calculator.domain.io.input.CalcInput;
 
 public final class InputParser {
 
